@@ -4,17 +4,13 @@ import java.util.List;
 
 public class WeatherSeed {
 
-	private List<SimulaRecord> simulaRecordList;
+	public List<SimulaRecord> simulaRecordList;
 
 	public int seedRecordCount() {
 		return simulaRecordList.size();
 	}
 
-	public List<SimulaRecord> getSimulaRecordList() {
-		return simulaRecordList;
-	}
-
-	public void setSimulaRecordList(List<SimulaRecord> simulaRecordList) {
+	public WeatherSeed(List<SimulaRecord> simulaRecordList) {
 		this.simulaRecordList = simulaRecordList;
 	}
 

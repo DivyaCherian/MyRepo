@@ -12,8 +12,8 @@ public class WeatherGame {
 		int numRecords = Integer.parseInt(args[0].trim());
 
 		SeedFileReader fRead = new SeedFileReader();
-		WeatherSeed seedList = (WeatherSeed) fRead.readSeedFile(FILENAME);
-		WeatherSimulator simulator = new WeatherSimulator(seedList);
+		WeatherSeed weatherSeed = new WeatherSeed(fRead.readSeedFile(FILENAME));
+		WeatherSimulator simulator = new WeatherSimulator(weatherSeed);
 		simulator.generateNSimulatedRecords(numRecords);
 	}
 }
