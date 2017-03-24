@@ -9,13 +9,12 @@ import java.util.List;
 
 import com.cba.weathergame.exception.WeatherGameRuntimeException;
 import com.cba.weathergame.simula.SimulaRecord;
+import com.cba.weathergame.simula.WeatherConstants;
 
 /*
  Reads the seed file and populates the Weather SeedFileReader
  */
 public class SeedFileReader {
-
-	private static final String DELIMITER = "\\|";
 
 	public List<SimulaRecord> readSeedFile(String fileName) {
 
@@ -35,7 +34,7 @@ public class SeedFileReader {
 			br = new BufferedReader(new FileReader(file));
 
 			while ((line = br.readLine()) != null) {
-				String[] seed = line.split(DELIMITER);
+				String[] seed = line.split(WeatherConstants.COMMA_DELIMITER);
 				seedList.add(new SimulaRecord(seed));
 			}
 
