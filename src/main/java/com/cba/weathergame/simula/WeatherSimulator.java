@@ -10,19 +10,42 @@ import java.util.Random;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import com.cba.weathergame.bootstrap.WeatherGame;
 import com.cba.weathergame.files.WeatherDataWriter;
 
+/**
+ * @author Rasna Joseph
+ * 
+ */
 public class WeatherSimulator {
 
+	/**
+	 * LOGGER initialized
+	 */
+	public static final Logger LOGGER = LoggerFactory
+			.getLogger(WeatherGame.class);
+
+	/**
+	 * 
+	 */
 	private WeatherSeed weatherSeed;
 
+	/**
+	 * @param weatherSeed
+	 */
 	public WeatherSimulator(WeatherSeed weatherSeed) {
 		this.weatherSeed = weatherSeed;
 
 	}
 
-	public void generateNSimulatedRecords(int minOutRecords) {
+	/**
+	 * @param minOutRecords
+	 * @return
+	 */
+	public int generateNSimulatedRecords(int minOutRecords) {
 
 		List<String> weatherDataList = new ArrayList<String>();
 		WeatherDataWriter writeUtil = new WeatherDataWriter();
@@ -30,11 +53,12 @@ public class WeatherSimulator {
 		List<SimulaRecord> simulaRecordList = weatherSeed.simulaRecordList;
 
 		if (minOutRecords <= weatherSeed.seedRecordCount()) {
-
+			LOGGER.info("Weather Seed is used as Weather Data");
 			for (SimulaRecord simuRec : simulaRecordList) {
 				weatherDataList.add(toDelimitedString(simuRec));
 			}
 		} else {
+			LOGGER.info("Generating Weather Data");
 			int seedSize = simulaRecordList.size();
 			int indiCityRecSize = minOutRecords / seedSize;
 			double temperature;
@@ -72,8 +96,18 @@ public class WeatherSimulator {
 			}
 		}
 		writeUtil.fileWriteUtil(weatherDataList);
+		LOGGER.info("Weather Data Generated Successfully");
+		if (weatherDataList.isEmpty()) {
+			return 0;
+		} else {
+			return weatherDataList.size();
+		}
 	}
 
+	/**
+	 * @param simuRec
+	 * @return
+	 */
 	private String toDelimitedString(SimulaRecord simuRec) {
 		StringBuilder weatherData = new StringBuilder();
 		weatherData.append(simuRec.cityName)
@@ -95,6 +129,10 @@ public class WeatherSimulator {
 		return weatherData.toString();
 	}
 
+	/**
+	 * @param temperature
+	 * @return
+	 */
 	private WeatherCondition getConditions(double temperature) {
 		if (temperature <= WeatherConstants.RAIN_MAX_TEMP
 				&& temperature >= WeatherConstants.RAIN_MIN_TEMP) {
@@ -110,6 +148,10 @@ public class WeatherSimulator {
 		}
 	}
 
+	/**
+	 * @param condition
+	 * @return
+	 */
 	private double getPressure(WeatherCondition condition) {
 		if (WeatherCondition.RAIN.equals(condition)) {
 			return RandomRange.getRandomDecimal(
@@ -130,6 +172,10 @@ public class WeatherSimulator {
 		}
 	}
 
+	/**
+	 * @param condition
+	 * @return
+	 */
 	private int getHumidity(WeatherCondition condition) {
 		Random random = new Random();
 		if (WeatherCondition.RAIN.equals(condition)) {
@@ -151,6 +197,10 @@ public class WeatherSimulator {
 		}
 	}
 
+	/**
+	 * @param day
+	 * @return
+	 */
 	private String getLocalTime(String day) {
 		DateTimeFormatter isoFormatter = DateTimeFormat
 				.forPattern(WeatherConstants.ISO_FORMAT);

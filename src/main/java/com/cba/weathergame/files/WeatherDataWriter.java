@@ -5,10 +5,26 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.cba.weathergame.exception.WeatherGameRuntimeException;
 import com.cba.weathergame.simula.WeatherConstants;
 
+/**
+ * @author Rasna Joseph
+ *
+ */
 public class WeatherDataWriter {
+	/**
+	 * LOGGER initialized
+	 */
+	public static final Logger LOGGER = LoggerFactory
+			.getLogger(WeatherDataWriter.class);
 
+	/**
+	 * @param fileContent
+	 */
 	public void fileWriteUtil(List<String> fileContent) {
 		BufferedWriter bw = null;
 		FileWriter fw = null;
@@ -23,9 +39,8 @@ public class WeatherDataWriter {
 
 		} catch (IOException e) {
 
-			e.printStackTrace();
-			// thorw
-			// logger
+			LOGGER.error("Failed to Write Weather Data File");
+			throw new WeatherGameRuntimeException(e);
 
 		} finally {
 
@@ -38,12 +53,8 @@ public class WeatherDataWriter {
 					fw.close();
 
 			} catch (IOException ex) {
-
-				ex.printStackTrace();
-
-				// throw
-				// logger
-
+				LOGGER.error("Failed to Close File Write Resources");
+				throw new WeatherGameRuntimeException(ex);
 			}
 
 		}

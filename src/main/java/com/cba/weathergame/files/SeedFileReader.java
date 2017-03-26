@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.cba.weathergame.exception.WeatherGameRuntimeException;
 import com.cba.weathergame.simula.SimulaRecord;
 import com.cba.weathergame.simula.WeatherConstants;
@@ -14,8 +17,22 @@ import com.cba.weathergame.simula.WeatherConstants;
 /*
  Reads the seed file and populates the Weather SeedFileReader
  */
+/**
+ * @author Rasna Joseph
+ *
+ */
 public class SeedFileReader {
 
+	/**
+	 * LOGGER initialized
+	 */
+	public static final Logger LOGGER = LoggerFactory
+			.getLogger(SeedFileReader.class);
+
+	/**
+	 * @param fileName
+	 * @return
+	 */
 	public List<SimulaRecord> readSeedFile(String fileName) {
 
 		List<SimulaRecord> seedList = new ArrayList<SimulaRecord>();
@@ -39,6 +56,7 @@ public class SeedFileReader {
 			}
 
 		} catch (IOException e) {
+			LOGGER.error("Failed to Read Weather Seed File");
 			throw new WeatherGameRuntimeException(e);
 		} finally {
 
@@ -51,11 +69,12 @@ public class SeedFileReader {
 					fr.close();
 
 			} catch (IOException ex) {
-
-				ex.printStackTrace();
+				LOGGER.error("Failed to Close File Read Resources");
+				throw new WeatherGameRuntimeException(ex);
 
 			}
 		}
+		LOGGER.info("Read Weather Seed File Successfully");
 		return seedList;
 
 	}

@@ -1,9 +1,10 @@
 package com.cba.weathergame.simula;
 
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 
+/**
+ * @author Rasna Joseph
+ *
+ */
 public class SimulaRecord {
 	public String cityName;
 	public String location_lat;
@@ -15,6 +16,9 @@ public class SimulaRecord {
 	public String pressure;
 	public String humidity;
 
+	/**
+	 * @param seeds
+	 */
 	public SimulaRecord(String[] seeds) {
 		int index = 0;
 		this.cityName = seeds[index++];
