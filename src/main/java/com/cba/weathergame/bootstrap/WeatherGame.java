@@ -11,18 +11,14 @@ import com.cba.weathergame.simula.WeatherSimulator;
 /**
  * @author Rasna Joseph
  * 
+ *         Weather Game Main Class
+ * 
  */
 public class WeatherGame {
 
-	/**
-	 * LOGGER initialized
-	 */
 	public static final Logger LOGGER = LoggerFactory
 			.getLogger(WeatherGame.class);
 
-	/**
-	 * @param args
-	 */
 	public static void main(String args[]) {
 
 		int minOutRecords = Integer.parseInt(args[0].trim());
@@ -33,7 +29,7 @@ public class WeatherGame {
 				fRead.readSeedFile(WeatherConstants.INFILE));
 
 		WeatherSimulator simulator = new WeatherSimulator(weatherSeed);
-		simulator.generateNSimulatedRecords(minOutRecords);
+		simulator.generateSimulatedRecords(minOutRecords);
 		LOGGER.info("Weather Game Completed Successfully");
 	}
 }

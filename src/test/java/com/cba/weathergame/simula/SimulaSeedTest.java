@@ -2,10 +2,15 @@ package com.cba.weathergame.simula;
 
 import static org.junit.Assert.assertTrue;
 
+/**
+ * @author Rasna Joseph
+ * 
+ *         Weather Game Junit
+ * 
+ */
+
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.cba.weathergame.files.SeedFileReader;
@@ -40,7 +45,7 @@ public class SimulaSeedTest {
 		WeatherSeed weatherSeed = new WeatherSeed(
 				fRead.readSeedFile(WeatherConstants.INFILE));
 		WeatherSimulator simulator = new WeatherSimulator(weatherSeed);
-		int weatherDataSize = simulator.generateNSimulatedRecords(5);
+		int weatherDataSize = simulator.generateSimulatedRecords(5);
 
 		assertTrue(weatherDataSize > 0);
 

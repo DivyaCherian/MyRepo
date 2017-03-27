@@ -8,21 +8,14 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Rasna Joseph
  * 
+ *         Class to Generate Random Range Facts
+ * 
  */
 public final class RandomRange {
 
-	/**
-	 * LOGGER initialized
-	 */
 	public static final Logger LOGGER = LoggerFactory
 			.getLogger(RandomRange.class);
 
-	/**
-	 * @param aStart
-	 * @param aEnd
-	 * @param aRandom
-	 * @return
-	 */
 	public static int getRandomInteger(int aStart, int aEnd, Random aRandom) {
 		if (aStart > aEnd) {
 			LOGGER.error("Start cannot exceed End.");
@@ -33,11 +26,6 @@ public final class RandomRange {
 		return (int) (fraction + aStart);
 	}
 
-	/**
-	 * @param min
-	 * @param max
-	 * @return
-	 */
 	public static double getRandomDecimal(double min, double max) {
 		if (min > max) {
 			LOGGER.error("Start cannot exceed End.");

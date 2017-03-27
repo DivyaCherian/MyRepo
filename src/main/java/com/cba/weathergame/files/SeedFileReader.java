@@ -14,25 +14,17 @@ import com.cba.weathergame.exception.WeatherGameRuntimeException;
 import com.cba.weathergame.simula.SimulaRecord;
 import com.cba.weathergame.simula.WeatherConstants;
 
-/*
- Reads the seed file and populates the Weather SeedFileReader
- */
 /**
  * @author Rasna Joseph
- *
+ * 
+ *         Class to Read the seed file and populates the WeatherSeed
+ * 
  */
 public class SeedFileReader {
 
-	/**
-	 * LOGGER initialized
-	 */
 	public static final Logger LOGGER = LoggerFactory
 			.getLogger(SeedFileReader.class);
 
-	/**
-	 * @param fileName
-	 * @return
-	 */
 	public List<SimulaRecord> readSeedFile(String fileName) {
 
 		List<SimulaRecord> seedList = new ArrayList<SimulaRecord>();

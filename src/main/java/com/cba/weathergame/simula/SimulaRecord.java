@@ -1,9 +1,10 @@
 package com.cba.weathergame.simula;
 
-
 /**
  * @author Rasna Joseph
- *
+ * 
+ *         Weather Simula Record
+ * 
  */
 public class SimulaRecord {
 	public String cityName;
@@ -16,9 +17,6 @@ public class SimulaRecord {
 	public String pressure;
 	public String humidity;
 
-	/**
-	 * @param seeds
-	 */
 	public SimulaRecord(String[] seeds) {
 		int index = 0;
 		this.cityName = seeds[index++];

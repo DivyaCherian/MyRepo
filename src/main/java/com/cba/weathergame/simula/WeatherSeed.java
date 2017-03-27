@@ -4,25 +4,18 @@ import java.util.List;
 
 /**
  * @author Rasna Joseph
- *
+ * 
+ *         Weather Seed Class
+ * 
  */
 public class WeatherSeed {
 
-	/**
-	 * 
-	 */
 	public List<SimulaRecord> simulaRecordList;
 
-	/**
-	 * @return
-	 */
 	public int seedRecordCount() {
 		return simulaRecordList.size();
 	}
 
-	/**
-	 * @param simulaRecordList
-	 */
 	public WeatherSeed(List<SimulaRecord> simulaRecordList) {
 		this.simulaRecordList = simulaRecordList;
 	}

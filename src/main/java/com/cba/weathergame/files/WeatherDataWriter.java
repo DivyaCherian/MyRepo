@@ -13,18 +13,15 @@ import com.cba.weathergame.simula.WeatherConstants;
 
 /**
  * @author Rasna Joseph
- *
+ * 
+ *         Class to Write Weather Data to Destination
+ * 
  */
 public class WeatherDataWriter {
-	/**
-	 * LOGGER initialized
-	 */
+
 	public static final Logger LOGGER = LoggerFactory
 			.getLogger(WeatherDataWriter.class);
 
-	/**
-	 * @param fileContent
-	 */
 	public void fileWriteUtil(List<String> fileContent) {
 		BufferedWriter bw = null;
 		FileWriter fw = null;

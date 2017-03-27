@@ -19,33 +19,29 @@ import com.cba.weathergame.files.WeatherDataWriter;
 /**
  * @author Rasna Joseph
  * 
+ * 
+ *         Class to Simulate Weather Data
+ * 
  */
 public class WeatherSimulator {
 
-	/**
-	 * LOGGER initialized
-	 */
 	public static final Logger LOGGER = LoggerFactory
 			.getLogger(WeatherGame.class);
 
-	/**
-	 * 
-	 */
 	private WeatherSeed weatherSeed;
 
-	/**
-	 * @param weatherSeed
-	 */
 	public WeatherSimulator(WeatherSeed weatherSeed) {
 		this.weatherSeed = weatherSeed;
 
 	}
 
 	/**
+	 * This Method is used to generate Simulated Records
+	 * 
 	 * @param minOutRecords
-	 * @return
+	 * @return Simulated Record Size
 	 */
-	public int generateNSimulatedRecords(int minOutRecords) {
+	public int generateSimulatedRecords(int minOutRecords) {
 
 		List<String> weatherDataList = new ArrayList<String>();
 		WeatherDataWriter writeUtil = new WeatherDataWriter();
@@ -105,8 +101,10 @@ public class WeatherSimulator {
 	}
 
 	/**
+	 * This Method is used to format weather data records in the required format
+	 * 
 	 * @param simuRec
-	 * @return
+	 * @return delimited weather data String
 	 */
 	private String toDelimitedString(SimulaRecord simuRec) {
 		StringBuilder weatherData = new StringBuilder();
@@ -130,8 +128,10 @@ public class WeatherSimulator {
 	}
 
 	/**
+	 * This method is used to get the weather Condition based on temperature
+	 * 
 	 * @param temperature
-	 * @return
+	 * @return WeatherCondition
 	 */
 	private WeatherCondition getConditions(double temperature) {
 		if (temperature <= WeatherConstants.RAIN_MAX_TEMP
@@ -149,6 +149,8 @@ public class WeatherSimulator {
 	}
 
 	/**
+	 * This method is used to get pressure based on weather condition
+	 * 
 	 * @param condition
 	 * @return
 	 */
@@ -173,6 +175,8 @@ public class WeatherSimulator {
 	}
 
 	/**
+	 * This method is used to get humidity based on weather condition
+	 * 
 	 * @param condition
 	 * @return
 	 */
@@ -198,6 +202,8 @@ public class WeatherSimulator {
 	}
 
 	/**
+	 * This method is used to generate Random periods
+	 * 
 	 * @param day
 	 * @return
 	 */
@@ -206,7 +212,7 @@ public class WeatherSimulator {
 				.forPattern(WeatherConstants.ISO_FORMAT);
 		DateFormat randFormatter = new SimpleDateFormat(
 				WeatherConstants.STD_FORMAT);
-		DateTime inputDay = isoFormatter.parseDateTime("2015-12-23T05:02:12Z");
+		DateTime inputDay = isoFormatter.parseDateTime(day);
 		long offset = Timestamp
 				.valueOf(randFormatter.format(inputDay.toDate())).getTime();
 		long end = Timestamp
